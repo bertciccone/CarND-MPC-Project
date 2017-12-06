@@ -1,14 +1,152 @@
-Bert (master *) build $ make
+Bert (master) CarND-MPC-Project $ ./install-mac.sh
+==> Downloading https://homebrew.bintray.com/bottles/openssl-1.0.2m.sierra.bottl
+Already downloaded: /Users/Bert/Library/Caches/Homebrew/openssl-1.0.2m.sierra.bottle.tar.gz
+==> Pouring openssl-1.0.2m.sierra.bottle.tar.gz
+==> Caveats
+A CA file has been bootstrapped using certificates from the SystemRoots
+keychain. To add additional certificates (e.g. the certificates added in
+the System keychain), place .pem files in
+  /usr/local/etc/openssl/certs
+
+and run
+  /usr/local/opt/openssl/bin/c_rehash
+
+This formula is keg-only, which means it was not symlinked into /usr/local,
+because Apple has deprecated use of OpenSSL in favor of its own TLS and crypto libraries.
+
+If you need to have this software first in your PATH run:
+  echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.bash_profile
+
+For compilers to find this software you may need to set:
+    LDFLAGS:  -L/usr/local/opt/openssl/lib
+    CPPFLAGS: -I/usr/local/opt/openssl/include
+For pkg-config to find this software you may need to set:
+    PKG_CONFIG_PATH: /usr/local/opt/openssl/lib/pkgconfig
+
+==> Summary
+🍺  /usr/local/Cellar/openssl/1.0.2m: 1,792 files, 12.3MB
+==> Downloading https://homebrew.bintray.com/bottles/libuv-1.18.0.sierra.bottle.
+Already downloaded: /Users/Bert/Library/Caches/Homebrew/libuv-1.18.0.sierra.bottle.tar.gz
+==> Pouring libuv-1.18.0.sierra.bottle.tar.gz
+🍺  /usr/local/Cellar/libuv/1.18.0: 56 files, 2.8MB
+==> Downloading https://homebrew.bintray.com/bottles/cmake-3.10.0.sierra.bottle.
+Already downloaded: /Users/Bert/Library/Caches/Homebrew/cmake-3.10.0.sierra.bottle.1.tar.gz
+==> Pouring cmake-3.10.0.sierra.bottle.1.tar.gz
+==> Caveats
+Emacs Lisp files have been installed to:
+  /usr/local/share/emacs/site-lisp/cmake
+==> Summary
+🍺  /usr/local/Cellar/cmake/3.10.0: 2,333 files, 32.4MB
+==> Downloading https://homebrew.bintray.com/bottles/zlib-1.2.11.sierra.bottle.t
+Already downloaded: /Users/Bert/Library/Caches/Homebrew/zlib-1.2.11.sierra.bottle.tar.gz
+==> Pouring zlib-1.2.11.sierra.bottle.tar.gz
+==> Caveats
+This formula is keg-only, which means it was not symlinked into /usr/local,
+because macOS already provides this software and installing another version in
+parallel can cause all kinds of trouble.
+
+For compilers to find this software you may need to set:
+    LDFLAGS:  -L/usr/local/opt/zlib/lib
+    CPPFLAGS: -I/usr/local/opt/zlib/include
+For pkg-config to find this software you may need to set:
+    PKG_CONFIG_PATH: /usr/local/opt/zlib/lib/pkgconfig
+
+==> Summary
+🍺  /usr/local/Cellar/zlib/1.2.11: 12 files, 374KB
+Cloning into 'uWebSockets'...
+remote: Counting objects: 4399, done.
+remote: Compressing objects: 100% (8/8), done.
+remote: Total 4399 (delta 1), reused 2 (delta 0), pack-reused 4391
+Receiving objects: 100% (4399/4399), 2.40 MiB | 4.05 MiB/s, done.
+Resolving deltas: 100% (2845/2845), done.
+Note: checking out 'e94b6e1'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by performing another checkout.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -b with the checkout command again. Example:
+
+  git checkout -b <new-branch-name>
+
+HEAD is now at e94b6e1... Node.js: add getResponsePrototype, getRequestPrototype again
+patching file CMakeLists.txt
+-- The C compiler identification is AppleClang 9.0.0.9000038
+-- The CXX compiler identification is AppleClang 9.0.0.9000038
+-- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
+-- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
+-- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found OpenSSL: /usr/local/Cellar/openssl/1.0.2m/lib/libcrypto.dylib (found version "1.0.2m") 
+-- Found ZLIB: /usr/lib/libz.dylib (found version "1.2.8") 
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/uWebSockets/build
+Scanning dependencies of target uWS
+[  6%] Building CXX object CMakeFiles/uWS.dir/src/Extensions.cpp.o
+[ 13%] Building CXX object CMakeFiles/uWS.dir/src/Group.cpp.o
+[ 20%] Building CXX object CMakeFiles/uWS.dir/src/WebSocketImpl.cpp.o
+[ 26%] Building CXX object CMakeFiles/uWS.dir/src/Networking.cpp.o
+[ 33%] Building CXX object CMakeFiles/uWS.dir/src/Hub.cpp.o
+[ 40%] Building CXX object CMakeFiles/uWS.dir/src/Node.cpp.o
+[ 46%] Building CXX object CMakeFiles/uWS.dir/src/WebSocket.cpp.o
+[ 53%] Building CXX object CMakeFiles/uWS.dir/src/HTTPSocket.cpp.o
+[ 60%] Building CXX object CMakeFiles/uWS.dir/src/Socket.cpp.o
+[ 66%] Building CXX object CMakeFiles/uWS.dir/src/uUV.cpp.o
+[ 73%] Linking CXX shared library libuWS.dylib
+[ 73%] Built target uWS
+Scanning dependencies of target multithreaded_echo
+[ 80%] Building CXX object examples/CMakeFiles/multithreaded_echo.dir/multithreaded_echo.cpp.o
+[ 86%] Linking CXX executable multithreaded_echo
+[ 86%] Built target multithreaded_echo
+Scanning dependencies of target echo
+[ 93%] Building CXX object examples/CMakeFiles/echo.dir/echo.cpp.o
+[100%] Linking CXX executable echo
+[100%] Built target echo
+Password:
+[ 73%] Built target uWS
+[ 86%] Built target multithreaded_echo
+[100%] Built target echo
+Install the project...
+-- Install configuration: ""
+-- Installing: /usr/local/lib/libuWS.dylib
+-- Installing: /usr/local/include/uWS/Extensions.h
+-- Installing: /usr/local/include/uWS/WebSocketProtocol.h
+-- Installing: /usr/local/include/uWS/Networking.h
+-- Installing: /usr/local/include/uWS/WebSocket.h
+-- Installing: /usr/local/include/uWS/Hub.h
+-- Installing: /usr/local/include/uWS/Group.h
+-- Installing: /usr/local/include/uWS/Node.h
+-- Installing: /usr/local/include/uWS/Socket.h
+-- Installing: /usr/local/include/uWS/HTTPSocket.h
+-- Installing: /usr/local/include/uWS/uWS.h
+-- Installing: /usr/local/include/uWS/uUV.h
+Bert (master) CarND-MPC-Project $ cd build
+Bert (master) build $ cmake ..
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/build
+Bert (master) build $ make
+Scanning dependencies of target mpc
 [ 33%] Building CXX object CMakeFiles/mpc.dir/src/main.cpp.o
 In file included from /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/src/main.cpp:9:
 In file included from /usr/local/include/uWS/uWS.h:4:
 In file included from /usr/local/include/uWS/Hub.h:5:
-/usr/local/include/uWS/Node.h:208:13: error: value of type '__bind<int &, sockaddr *&,
-      unsigned int &>' is not contextually convertible to 'bool'
-        if (bind(listenFd, listenAddr->ai_addr, listenAddr->ai_addrlen) || ::l...
+/usr/local/include/uWS/Node.h:208:13: error: value of type '__bind<int &,
+      sockaddr *&, unsigned int &>' is not contextually convertible to 'bool'
+        if (bind(listenFd, listenAddr->ai_addr, listenAddr->ai_addrlen) || ::lis...
             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/usr/local/include/uWS/Node.h:208:73: error: invalid operands to binary expression
-      ('__bind<int &, sockaddr *&, unsigned int &>' and 'int')
+/usr/local/include/uWS/Node.h:208:73: error: invalid operands to binary
+      expression ('__bind<int &, sockaddr *&, unsigned int &>' and 'int')
   ...bind(listenFd, listenAddr->ai_addr, listenAddr->ai_addrlen) || ::listen(listenFd, 512)) {
      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~
 /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/src/main.cpp:131:18: warning: 
@@ -23,4 +161,4 @@ In file included from /usr/local/include/uWS/Hub.h:5:
 make[2]: *** [CMakeFiles/mpc.dir/src/main.cpp.o] Error 1
 make[1]: *** [CMakeFiles/mpc.dir/all] Error 2
 make: *** [all] Error 2
-Bert (master *) build $ 
+Bert (master) build $ 
