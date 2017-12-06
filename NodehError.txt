@@ -1,0 +1,26 @@
+Bert (master *) build $ make
+[ 33%] Building CXX object CMakeFiles/mpc.dir/src/main.cpp.o
+In file included from /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/src/main.cpp:9:
+In file included from /usr/local/include/uWS/uWS.h:4:
+In file included from /usr/local/include/uWS/Hub.h:5:
+/usr/local/include/uWS/Node.h:208:13: error: value of type '__bind<int &, sockaddr *&,
+      unsigned int &>' is not contextually convertible to 'bool'
+        if (bind(listenFd, listenAddr->ai_addr, listenAddr->ai_addrlen) || ::l...
+            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/local/include/uWS/Node.h:208:73: error: invalid operands to binary expression
+      ('__bind<int &, sockaddr *&, unsigned int &>' and 'int')
+  ...bind(listenFd, listenAddr->ai_addr, listenAddr->ai_addrlen) || ::listen(listenFd, 512)) {
+     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^  ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/src/main.cpp:131:18: warning: 
+      unused variable 'steer_value' [-Wunused-variable]
+          double steer_value = j[1]["steering_angle"];
+                 ^
+/Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/src/main.cpp:132:18: warning: 
+      unused variable 'throttle_value' [-Wunused-variable]
+          double throttle_value = j[1]["throttle"];
+                 ^
+2 warnings and 2 errors generated.
+make[2]: *** [CMakeFiles/mpc.dir/src/main.cpp.o] Error 1
+make[1]: *** [CMakeFiles/mpc.dir/all] Error 2
+make: *** [all] Error 2
+Bert (master *) build $ 
