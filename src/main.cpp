@@ -1,13 +1,14 @@
+#include <math.h>
+#include <uWS/uWS.h>
+#include <chrono>
+#include <iostream>
+#include <thread>
+#include <vector>
 #include "Eigen-3.3/Eigen/Core"
 #include "Eigen-3.3/Eigen/QR"
 #include "MPC.h"
 #include "json.hpp"
-#include <chrono>
-#include <iostream>
-#include <math.h>
-#include <thread>
-#include <uWS/uWS.h>
-#include <vector>
+
 
 // for convenience
 using json = nlohmann::json;
@@ -224,6 +225,7 @@ int main() {
 
   h.onConnection([&h](uWS::WebSocket<uWS::SERVER> ws, uWS::HttpRequest req) {
     std::cout << "Connected!!!" << std::endl;
+    std::cout << "Ready!!!" << std::endl;
   });
 
   h.onDisconnection([&h](uWS::WebSocket<uWS::SERVER> ws, int code,
