@@ -66,6 +66,30 @@ Eigen::VectorXd polyfit(Eigen::VectorXd xvals, Eigen::VectorXd yvals,
   return result;
 }
 
+Eigen::VectorXd globalKinematic(Eigen::VectorXd state,
+                                Eigen::VectorXd actuators, double dt) {
+  Eigen::VectorXd next_state(state.size());
+
+  //TODO: Implement the Global Kinematic Model, to return
+  // the next state from inputs
+
+  // NOTE: state is [x, y, psi, v, cte, epsi]
+  // NOTE: actuators is [delta, a]
+
+  //Add your code below
+  double Lf = 2.67;
+
+  next_state[0] = state[0] + state[3] * cos(state[2]) * dt;
+  next_state[1] = state[1] + state[3] * sin(state[2]) * dt;
+  next_state[2] = state[2] + state[3] / Lf * actuators[0] * dt;
+  next_state[3] = state[3] + actuators[1] * dt;
+
+  next_state[4] = state[4];
+  next_state[5] = state[5];
+
+  return next_state;
+}
+
 int main() {
   uWS::Hub h;
 
@@ -132,9 +156,20 @@ int main() {
           double steer_value = j[1]["steering_angle"];
           double throttle_value = j[1]["throttle"];
 
+          Eigen::VectorXd actuators(2);
+          actuators << steer_value, throttle_value;
+
           Eigen::VectorXd state(6);
           // x, y, psi, v, cte, epsi
           state << 0, 0, 0, v, cte, epsi;
+
+          cout << "State before delay:" << endl;
+          cout << state << endl;
+
+          state = globalKinematic(state, actuators, 0.0);
+
+          cout << "State after delay:" << endl;
+          cout << state << endl;
 
           auto vars = mpc.Solve(state, coeffs);
 

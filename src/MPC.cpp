@@ -58,39 +58,32 @@ public:
     // TODO: Define the cost related the reference state and
     // any anything you think may be beneficial.
 
-    // basic cost update based on current state
-    // fg[0] += pow(cte[t], 2);
-    // fg[0] += pow(epsi[t], 2);
-
-    // preventing stopping
-    // fg[0] += pow(velocity - 10, 2);
-
-    // preventing rapid changes in control inputs
-    // fg[0] += pow(velocity - 10, 2);
-
-    // smoothing change in control inputs
-    // fg[0] += pow(delta[t + 1] - delta[t], 2) fg[0] += pow(a[t + 1] - a[t],
-    // 2);
-
     // The part of the cost based on the reference state.
     for (int i = 0; i < N; i++) {
-      fg[0] += 2000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
-      fg[0] += 2000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
+      //fg[0] += 2000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
+      //fg[0] += 2000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
+      //fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
+      fg[0] += 1500 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
+      fg[0] += 1500 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
       fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
     }
 
     // Minimize the use of actuators.
     for (int i = 0; i < N - 1; i++) {
-      fg[0] += 5 * CppAD::pow(vars[delta_start + i], 2);
-      fg[0] += 5 * CppAD::pow(vars[a_start + i], 2);
+      //fg[0] += 5 * CppAD::pow(vars[delta_start + i], 2);
+      //fg[0] += 5 * CppAD::pow(vars[a_start + i], 2);
+      fg[0] += 1 * CppAD::pow(vars[delta_start + i], 2);
+      fg[0] += 1 * CppAD::pow(vars[a_start + i], 2);
     }
 
     // Minimize the value gap between sequential actuations.
     for (int i = 0; i < N - 2; i++) {
       //fg[0] += 200 *
-      fg[0] += 200 *
+               //CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
+      //fg[0] += 10 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      fg[0] += 25 *
                CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
-      fg[0] += 10 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      fg[0] += 5 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
     }
 
     //
@@ -275,7 +268,7 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
 
   // Cost
   auto cost = solution.obj_value;
-  //std::cout << "Cost " << cost << std::endl;
+  std::cout << "Cost " << cost << std::endl;
 
   // TODO: Return the first actuator values. The variables can be accessed with
   // `solution.x[i]`.
