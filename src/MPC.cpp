@@ -6,8 +6,10 @@
 using CppAD::AD;
 
 // TODO: Set the timestep length and duration
+//size_t N = 10;
 size_t N = 10;
-double dt = 0.1;
+//double dt = 0.1;
+double dt = 0.25;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -63,8 +65,11 @@ public:
       //fg[0] += 2000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
       //fg[0] += 2000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
       //fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
-      fg[0] += 1500 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
-      fg[0] += 1500 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
+      //fg[0] += 1500 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
+      //fg[0] += 1500 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
+      //fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
+      fg[0] += 5000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
+      fg[0] += 5000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
       fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
     }
 
@@ -72,8 +77,10 @@ public:
     for (int i = 0; i < N - 1; i++) {
       //fg[0] += 5 * CppAD::pow(vars[delta_start + i], 2);
       //fg[0] += 5 * CppAD::pow(vars[a_start + i], 2);
-      fg[0] += 1 * CppAD::pow(vars[delta_start + i], 2);
-      fg[0] += 1 * CppAD::pow(vars[a_start + i], 2);
+      //fg[0] += 1 * CppAD::pow(vars[delta_start + i], 2);
+      //fg[0] += 1 * CppAD::pow(vars[a_start + i], 2);
+      fg[0] += 5 * CppAD::pow(vars[delta_start + i], 2);
+      fg[0] += 5 * CppAD::pow(vars[a_start + i], 2);
     }
 
     // Minimize the value gap between sequential actuations.
@@ -81,9 +88,15 @@ public:
       //fg[0] += 200 *
                //CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
       //fg[0] += 10 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
-      fg[0] += 25 *
+      //fg[0] += 25 *
+               //CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
+      //fg[0] += 5 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      //fg[0] += 250 *
+               //CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
+      //fg[0] += 50 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      fg[0] += 10 *
                CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
-      fg[0] += 5 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      fg[0] += 25 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
     }
 
     //
@@ -267,8 +280,8 @@ vector<double> MPC::Solve(Eigen::VectorXd state, Eigen::VectorXd coeffs) {
   ok &= solution.status == CppAD::ipopt::solve_result<Dvector>::success;
 
   // Cost
-  auto cost = solution.obj_value;
-  std::cout << "Cost " << cost << std::endl;
+  //auto cost = solution.obj_value;
+  //std::cout << "Cost " << cost << std::endl;
 
   // TODO: Return the first actuator values. The variables can be accessed with
   // `solution.x[i]`.
