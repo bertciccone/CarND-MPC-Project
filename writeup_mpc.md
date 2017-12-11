@@ -30,11 +30,12 @@ Here's a [link to the video](https://github.com/bertciccone/CarND-MPC-Project/bl
 
 #### Code must compile without errors with cmake and make.
 
-Bert (master) build $ cmake .. && make
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/build
-[100%] Built target mpc
+Bert (master) build $ cmake .. && make  
+-- Configuring done  
+-- Generating done  
+-- Build files have been written to:  
+/Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/build  
+[100%] Built target mpc  
 
 ### The Model
 
@@ -48,14 +49,14 @@ This state is stored in the following data structure in the function main() in m
 
 `Eigen::VectorXd state(6);`
 
-state[0]: the car's x position
-state[1]: the car's y position
-state[2]: the car's velocity
-state[3]: the car's direction
+state[0]: the car's x position  
+state[1]: the car's y position  
+state[2]: the car's velocity  
+state[3]: the car's direction  
 
-Also stored in this data structure are the following:
-state[4]: the car's cross-track error
-state[5]: the car's error in psi (direction)
+Also stored in this data structure are the following:  
+state[4]: the car's cross-track error  
+state[5]: the car's error in psi (direction)  
 
 ##### Actuators
 
@@ -65,42 +66,42 @@ In the code, the actuators are stored in the following data structure in main() 
 
 `Eigen::VectorXd actuators(2);`
 
-actuators[0]: the car's steering angle
-actuators[1]: the car's throttle
+actuators[0]: the car's steering angle  
+actuators[1]: the car's throttle  
 
 ##### Update Equations
 
 At each timestep, the model is updated in the function FG_eval() in MPC.cpp by the following code which implements the MPC update equations:
 
-`fg[2 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt); // x
-fg[2 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt); // y
-fg[2 + psi_start + t] = psi1 - (psi0 - v0 * delta0 / Lf * dt); // psi (direction)
-fg[2 + v_start + t] = v1 - (v0 + a0 * dt); // v
-fg[2 + cte_start + t] =
-    cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt)); // cross-track error
-fg[2 + epsi_start + t] =
-    epsi1 - ((psi0 - psides0) - v0 * delta0 / Lf * dt); // error in psi`
+`fg[2 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt); // x  
+fg[2 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt); // y  
+fg[2 + psi_start + t] = psi1 - (psi0 - v0 * delta0 / Lf * dt); // psi (direction)  
+fg[2 + v_start + t] = v1 - (v0 + a0 * dt); // v  
+fg[2 + cte_start + t] =  
+    cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt)); // cross-track error  
+fg[2 + epsi_start + t] =  
+    epsi1 - ((psi0 - psides0) - v0 * delta0 / Lf * dt); // error in psi`  
 
 The following statements in FG_eval() in MPC.cpp calculate a Reference State Cost that specify how far from zero each state value should be. In effect, these statements adjust the update to tune the degree and frequency of actuator changes and how closely the car needs to follow the idea path. A significant amount of experimentation was needed to arrive at acceptable constant weights applied to these calculations to enable the car to successfully navigate the track at high speed.
 
-`// The part of the cost based on the reference state.
-for (int i = 0; i < N; i++) {
-  fg[0] += 20000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
-  fg[0] += 20000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
-  fg[0] += 3 * CppAD::pow(vars[v_start + i] - ref_v, 2);
+`// The part of the cost based on the reference state.  
+for (int i = 0; i < N; i++) {  
+  fg[0] += 20000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);  
+  fg[0] += 20000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);  
+  fg[0] += 3 * CppAD::pow(vars[v_start + i] - ref_v, 2);  
 }
 
-// Minimize the use of actuators.
-for (int i = 0; i < N - 1; i++) {
-  fg[0] += 50 * CppAD::pow(vars[delta_start + i], 2);
-  fg[0] += 50 * CppAD::pow(vars[a_start + i], 2);
+// Minimize the use of actuators.  
+for (int i = 0; i < N - 1; i++) {  
+  fg[0] += 50 * CppAD::pow(vars[delta_start + i], 2);  
+  fg[0] += 50 * CppAD::pow(vars[a_start + i], 2);  
 }
 
-// Minimize the value gap between sequential actuations.
-for (int i = 0; i < N - 2; i++) {
-  fg[0] += 400 *
-           CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
-  fg[0] += 50 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+// Minimize the value gap between sequential actuations.  
+for (int i = 0; i < N - 2; i++) {  
+  fg[0] += 400 *  
+           CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);  
+  fg[0] += 50 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);  
 }`
 
 ### Timestep Length and Elapsed Duration (N & dt)
@@ -119,11 +120,11 @@ Timestep of 0.1 worked well while no delay was introduced into the simulation. H
 
 This code in main() in main.cpp fits a polynomial to the track waypoints:
 
-`double poly_inc = 2.5;
-int num_points = 25;
-for (int i = 1; i < num_points; i++) {
-  next_x_vals.push_back(poly_inc * i);
-  next_y_vals.push_back(polyeval(coeffs, poly_inc * i));
+`double poly_inc = 2.5;  
+int num_points = 25;  
+for (int i = 1; i < num_points; i++) {  
+  next_x_vals.push_back(poly_inc * i);  
+  next_y_vals.push_back(polyeval(coeffs, poly_inc * i));  
 }`
 
 #### 2. Preprocessing of waypoints, the vehicle state, and/or actuators prior to the MPC procedure is described.
@@ -138,10 +139,10 @@ Latency in the system is handled in the function globalKinematic() defined in ma
 
 These are the statements in the function globalKinematic() in main.cpp that perform this prediction:
 
-`double Lf = 2.67;
-next_state[0] = state[0] + state[3] * cos(state[2]) * dt; // x
-next_state[1] = state[1] + state[3] * sin(state[2]) * dt; // y
-next_state[2] = state[2] + state[3] / Lf * actuators[0] * dt; // v
+`double Lf = 2.67;  
+next_state[0] = state[0] + state[3] * cos(state[2]) * dt; // x  
+next_state[1] = state[1] + state[3] * sin(state[2]) * dt; // y  
+next_state[2] = state[2] + state[3] / Lf * actuators[0] * dt; // v  
 next_state[3] = state[3] + actuators[1] * dt; // psi (direction)`
 
 ### The vehicle successfully drives a lap around the track.
