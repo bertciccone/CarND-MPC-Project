@@ -16,7 +16,7 @@ The goals of this project are:
 
 Here's a [link to the video](https://github.com/bertciccone/CarND-MPC-Project/blob/master/video/mpc_video.mov) of the car completing a lap around the track in the Unity simulator.
 
-![MPC Video](https://github.com/bertciccone/CarND-MPC-Project/blob/master/video/mpc_video.mov)
+![MPC Video](https://github.com/bertciccone/CarND-MPC-Project/blob/master/img/Screen%20Shot%202017-12-11%20at%2010.48.12%20AM.png)
 
 ---
 
