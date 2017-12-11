@@ -70,7 +70,7 @@ public:
       //fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
       fg[0] += 20000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
       fg[0] += 20000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
-      fg[0] += 2 * CppAD::pow(vars[v_start + i] - ref_v, 2);
+      fg[0] += 4 * CppAD::pow(vars[v_start + i] - ref_v, 2);
     }
 
     // Minimize the use of actuators.
@@ -94,9 +94,9 @@ public:
       //fg[0] += 250 *
                //CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
       //fg[0] += 50 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
-      fg[0] += 100 *
+      fg[0] += 400 *
                CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
-      fg[0] += 20 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      fg[0] += 50 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
     }
 
     //
