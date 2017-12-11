@@ -70,7 +70,7 @@ public:
       //fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
       fg[0] += 20000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
       fg[0] += 20000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
-      fg[0] += 4 * CppAD::pow(vars[v_start + i] - ref_v, 2);
+      fg[0] += 3 * CppAD::pow(vars[v_start + i] - ref_v, 2);
     }
 
     // Minimize the use of actuators.
