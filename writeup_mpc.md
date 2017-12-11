@@ -33,9 +33,14 @@ Here's a [link to the video](https://github.com/bertciccone/CarND-MPC-Project/bl
 Bert (master) build $ cmake .. && make  
 -- Configuring done  
 -- Generating done  
--- Build files have been written to:  
-/Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/build  
+-- Build files have been written to:   /Users/Bert/Projects/Udacity/CARND/term2/projects/CarND-MPC-Project/build  
+Scanning dependencies of target mpc  
+[ 33%] Building CXX object CMakeFiles/mpc.dir/src/MPC.cpp.o  
+[ 66%] Building CXX object CMakeFiles/mpc.dir/src/main.cpp.o  
+[100%] Linking CXX executable mpc  
+ld: warning: directory not found for option '-L/usr/local/Cellar/libuv/1*/lib'  
 [100%] Built target mpc  
+Bert (master *) build $ 
 
 ### The Model
 

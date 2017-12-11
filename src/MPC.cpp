@@ -54,8 +54,6 @@ public:
     // between this function and the Solver function below.
     fg[0] = 0; // cost
 
-    // std::cout << "operator..." << std::endl; // DEBUG
-
     // Reference State Cost
     // TODO: Define the cost related the reference state and
     // any anything you think may be beneficial.
@@ -115,8 +113,6 @@ public:
     fg[1 + v_start] = vars[v_start];
     fg[1 + cte_start] = vars[cte_start];
     fg[1 + epsi_start] = vars[epsi_start];
-
-    // std::cout << "operator...fourth loop" << std::endl; // DEBUG
 
     // The rest of the constraints
     for (int t = 0; t < N - 1; t++) {

@@ -9,7 +9,6 @@
 #include "MPC.h"
 #include "json.hpp"
 
-
 // for convenience
 using json = nlohmann::json;
 
@@ -163,13 +162,8 @@ int main() {
           // x, y, psi, v, cte, epsi
           state << 0, 0, 0, v, cte, epsi;
 
-          //cout << "State before delay:" << endl;
-          //cout << state << endl;
-
+          // account for delay of 100 ms and update car's position
           state = globalKinematic(state, actuators, 0.1);
-
-          //cout << "State after delay:" << endl;
-          //cout << state << endl;
 
           auto vars = mpc.Solve(state, coeffs);
 
