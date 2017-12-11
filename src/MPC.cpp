@@ -9,7 +9,7 @@ using CppAD::AD;
 //size_t N = 10;
 size_t N = 10;
 //double dt = 0.1;
-double dt = 0.25;
+double dt = 0.18;
 
 // This value assumes the model presented in the classroom is used.
 //
@@ -70,7 +70,7 @@ public:
       //fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
       fg[0] += 20000 * CppAD::pow(vars[cte_start + i] - ref_cte, 2);
       fg[0] += 20000 * CppAD::pow(vars[epsi_start + i] - ref_epsi, 2);
-      fg[0] += CppAD::pow(vars[v_start + i] - ref_v, 2);
+      fg[0] += 2 * CppAD::pow(vars[v_start + i] - ref_v, 2);
     }
 
     // Minimize the use of actuators.
@@ -79,8 +79,8 @@ public:
       //fg[0] += 5 * CppAD::pow(vars[a_start + i], 2);
       //fg[0] += 1 * CppAD::pow(vars[delta_start + i], 2);
       //fg[0] += 1 * CppAD::pow(vars[a_start + i], 2);
-      fg[0] += 10 * CppAD::pow(vars[delta_start + i], 2);
-      fg[0] += 25 * CppAD::pow(vars[a_start + i], 2);
+      fg[0] += 50 * CppAD::pow(vars[delta_start + i], 2);
+      fg[0] += 50 * CppAD::pow(vars[a_start + i], 2);
     }
 
     // Minimize the value gap between sequential actuations.
@@ -94,9 +94,9 @@ public:
       //fg[0] += 250 *
                //CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
       //fg[0] += 50 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
-      fg[0] += 250 *
+      fg[0] += 100 *
                CppAD::pow(vars[delta_start + i + 1] - vars[delta_start + i], 2);
-      fg[0] += 500 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
+      fg[0] += 20 * CppAD::pow(vars[a_start + i + 1] - vars[a_start + i], 2);
     }
 
     //
