@@ -78,7 +78,7 @@ actuators[1]: the car's throttle
 
 At each timestep, the model is updated in the function FG_eval() in MPC.cpp by the following code which implements the MPC update equations:
 
-```c++
+```
 fg[2 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt); // x  
 fg[2 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt); // y  
 fg[2 + psi_start + t] = psi1 - (psi0 - v0 * delta0 / Lf * dt); // psi (direction)  
