@@ -40,7 +40,7 @@ Scanning dependencies of target mpc
 [100%] Linking CXX executable mpc  
 ld: warning: directory not found for option '-L/usr/local/Cellar/libuv/1*/lib'  
 [100%] Built target mpc  
-Bert (master *) build $ 
+Bert (master *) build $
 
 ### The Model
 
@@ -78,7 +78,7 @@ actuators[1]: the car's throttle
 
 At each timestep, the model is updated in the function FG_eval() in MPC.cpp by the following code which implements the MPC update equations:
 
-`//
+```c++
 fg[2 + x_start + t] = x1 - (x0 + v0 * CppAD::cos(psi0) * dt); // x  
 fg[2 + y_start + t] = y1 - (y0 + v0 * CppAD::sin(psi0) * dt); // y  
 fg[2 + psi_start + t] = psi1 - (psi0 - v0 * delta0 / Lf * dt); // psi (direction)  
@@ -87,7 +87,7 @@ fg[2 + cte_start + t] =
     cte1 - ((f0 - y0) + (v0 * CppAD::sin(epsi0) * dt)); // cross-track error  
 fg[2 + epsi_start + t] =  
     epsi1 - ((psi0 - psides0) - v0 * delta0 / Lf * dt); // error in psi
-//`  
+```
 
 The following statements in FG_eval() in MPC.cpp calculate a Reference State Cost that specify how far from zero each state value should be. In effect, these statements adjust the update to tune the degree and frequency of actuator changes and how closely the car needs to follow the idea path. A significant amount of experimentation was needed to arrive at acceptable constant weights applied to these calculations to enable the car to successfully navigate the track at high speed.
 
